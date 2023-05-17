@@ -161,12 +161,12 @@
 	$shadow: #ddffbb20;
 	@font-face {
 		font-family: 'Montserrat Alternates Regular';
-		src: url('/static/MontserratAlternates-Regular.ttf');
+		src: url('MontserratAlternates-Regular.ttf');
 		font-display: swap;
 	}
 	@font-face {
 		font-family: 'Montserrat Alternates Bold';
-		src: url('MontserratAlternates-bold.ttf');
+		src: url('MontserratAlternates-Bold.ttf');
 		font-display: swap;
 	}
 	* {

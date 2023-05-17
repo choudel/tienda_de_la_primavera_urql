@@ -23,7 +23,17 @@
 		<Search />
 	</section>
 	<section class="container">
+		<div class="outer">
+			<div class="icon">
+				<img src="Polygon-up.svg" alt="up" />
+			</div>
+		</div>
 		<Card />
+		<div class="outer">
+			<div class="icon">
+				<img src="Polygon-down.svg" alt="down" />
+			</div>
+		</div>
 	</section>
 	<footer>
 		<Footer />
@@ -31,6 +41,7 @@
 </main>
 
 <style lang="scss">
+	$break: 815px;
 	main {
 		z-index: 0;
 		display: grid;
@@ -55,12 +66,36 @@
 		}
 	}
 	.container {
+		display: grid;
 		z-index: 1;
 		grid-template-columns: auto auto auto auto;
+
 		gap: 8px;
 		@media only screen and (max-width: 815px) {
 			grid-template-columns: auto;
 			grid-template-rows: auto auto auto auto;
+			justify-content: center;
+		}
+	}
+	.icon {
+		display: none;
+		@media only screen and (max-width: $break) {
+			display: grid;
+			justify-content: center;
+			align-items: center;
+			padding: 0;
+			width: 20px;
+			height: 20px;
+			background: #ddffbb;
+			border-radius: 50px;
+		}
+	}
+	.outer {
+		display: none;
+		@media only screen and (max-width: $break) {
+			display: grid;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 	footer {
