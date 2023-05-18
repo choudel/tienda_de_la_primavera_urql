@@ -42,17 +42,22 @@
 
 <style lang="scss">
 	@font-face {
-		font-family: 'Montserrat Alternates Thin';
-		src: url('MontserratAlternates-Thin.ttf');
+		font-family: 'Montserrat Alternates Regular';
+		src: url('/fonts/MontserratAlternates-Regular.ttf');
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Montserrat Alternates Bold';
+		src: url('/fonts/MontserratAlternates-Bold.ttf');
 		font-display: swap;
 	}
 	.card {
 		display: grid;
-		width: 335px;
-		height: 326px;
+		width: auto;
+		max-height: calc(35vmax - 42px);
 		background: #b3c99c;
 		grid-template-columns: auto;
-		grid-template-rows: 232px auto;
+		grid-template-rows: 15vmax auto;
 		border: 2px solid #ddffbb;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		border-radius: 32px;
@@ -63,24 +68,25 @@
 		@media only screen and (max-width: 815px) {
 			grid-template-columns: 100px 40vw;
 			grid-template-rows: auto;
-			width: calc(100px + 40vw);
+			width: calc(100vw - 78px);
 			height: auto;
 			padding: 0;
 		}
 	}
 	.item-pic {
+		min-height: 15vmax;
 		display: grid;
 		border-radius: 32px 32px 0 0;
 		justify-content: center;
 		align-items: center;
 		@media only screen and (max-width: 815px) {
 			border-radius: 32px 0 0 32px;
+			min-height: auto;
 		}
 	}
 	img {
-		height: 200px;
-		width: 200px;
-		max-width: 20vw;
+		width: 12vmax;
+		height: 12vmax;
 		border-radius: 32px;
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 		@media only screen and (max-width: 815px) {
@@ -97,7 +103,7 @@
 		justify-content: center;
 		align-items: center;
 		@media only screen and (max-width: 815px) {
-			grid-template-columns: calc(40vw - 28px);
+			grid-template-columns: calc(100vw - 208px);
 			align-items: center;
 			justify-content: left;
 		}
