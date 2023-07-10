@@ -1,26 +1,49 @@
 <script lang="ts">
 	import { queryStore, gql, getContextClient } from '@urql/svelte';
+	import { Client, setContextClient, cacheExchange, fetchExchange } from '@urql/svelte';
 
-	const client = getContextClient();
-	const query = gql`
-		query {
-			query {
-				items {
-					nodes {
-						item
-						id
-						price
-						image
-						sellText
-					}
-				}
+	const tempClient = new Client({
+		url: 'http://localhost:3000/graphql',
+		exchanges: [cacheExchange, fetchExchange]
+	});
+	setContextClient(tempClient);
+	const authenticateMutation = gql`
+		mutation MyMutation($email: String!, $password: String!) {
+			authenticate(input: { email: $email, password: $password }) {
+				jwt
 			}
 		}
 	`;
-	$: todos = queryStore({
-		client,
-		query
-	});
+	async function authenticate() {
+		const result = await tempClient.mutation(authenticateMutation, {
+			email: 'chou@gmail.com',
+			password: 'secret'
+		});
+		const jwt = await result.data?.authenticate.jwt;
+		return jwt;
+	}
+	authenticate().then(
+		(jwt) => {
+			console.log('JWT:', jwt);
+			const client = new Client({
+				url: 'http://localhost:3000/graphql',
+				exchanges: [cacheExchange, fetchExchange],
+				fetchOptions: () => {
+					return {
+						headers: {
+							authorization: `Bearer ${jwt}`
+						}
+					};
+				}
+			});
+			setContextClient(client);
+
+			
+		},
+		(errorReason) => {
+			// code on error
+		}
+	);
 </script>
 
 {#if $todos.fetching}
@@ -28,7 +51,7 @@
 {:else if $todos.error}
 	<p>Oh no... {$todos.error.message}</p>
 {:else}
-	{#each $todos.data.query.items.nodes as node}
+	{#each $todos.data.items.nodes as node}
 		<div class="card">
 			<div class="item-pic">
 				<img src={node.image} alt="bag" />

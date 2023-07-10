@@ -4,6 +4,156 @@
 	import Search from '../lib/search.svelte';
 	import Card from '../lib/card.svelte';
 	import Footer from '../lib/footer.svelte';
+
+	import {
+		cacheExchange,
+		fetchExchange,
+		gql,
+		setContextClient,
+		Client,
+		dedupExchange,
+		createClient
+	} from '@urql/svelte';
+	import { makeOperation } from '@urql/core';
+	import { authExchange } from '@urql/exchange-auth';
+
+	const TOKEN_KEY = 'token';
+	const REFRESH_TOKEN_KEY = 'refresh_token';
+
+	export const saveAuthState = ({ jwt, refreshtoken }: AuthState) => {
+		if (typeof window === 'undefined') return;
+		localStorage.setItem(TOKEN_KEY, jwt);
+		localStorage.setItem(REFRESH_TOKEN_KEY, refreshtoken);
+	};
+	export const clearAuthState = () => {
+		if (typeof window === 'undefined') return;
+		localStorage.removeItem(TOKEN_KEY);
+		localStorage.removeItem(REFRESH_TOKEN_KEY);
+	};
+	export const getToken = () => {
+		if (typeof window === 'undefined') return;
+		return localStorage.getItem(TOKEN_KEY);
+	};
+
+	export const getRefreshToken = () => {
+		if (typeof window === 'undefined') return;
+		return localStorage.getItem(REFRESH_TOKEN_KEY);
+	};
+	const REFRESH_TOKEN_MUTATION = gql`
+		mutation MyMutation($email: String = "", $password: String = "") {
+			authenticate(input: { email: $email, password: $password }) {
+				authenticateResult {
+					jwt
+					refreshtoken
+				}
+			}
+		}
+	`;
+	async function getAuth({ authState, mutate }: GetAuthInput) {
+		if (!authState) {
+			const token = getToken();
+			const refreshToken = getRefreshToken();
+
+			if (token && refreshToken) {
+				return { token, refreshToken };
+			}
+
+			return null;
+		}
+		const tempClient = new Client({
+			url: 'http://localhost:3000/graphql',
+			exchanges: [cacheExchange, fetchExchange]
+		});
+		setContextClient(tempClient);
+		const result = await mutate(REFRESH_TOKEN_MUTATION, {
+			email: 'chou@gmail.com',
+			password: 'secret'
+		});
+		if (result.data?.authenticate.authenticateResult) {
+			saveAuthState(result.data.authenticate.authenticateResult);
+			return result.data.authenticate.authenticateResult;
+		}
+		clearAuthState();
+		window.location.reload();
+
+		return null;
+	}
+	type AddAuthToOperationInput = {
+		authState: AuthState;
+		operation: Operation<any, any>;
+	};
+	function addAuthToOperation({ authState, operation }: AddAuthToOperationInput) {
+		if (!authState || !authState.jwt) {
+			return operation;
+		}
+
+		const fetchOptions =
+			typeof operation.context.fetchOptions === 'function'
+				? operation.context.fetchOptions()
+				: operation.context.fetchOptions || {};
+
+		return makeOperation(operation.kind, operation, {
+			...operation.context,
+			fetchOptions: {
+				...fetchOptions,
+				headers: {
+					...fetchOptions.headers,
+					Authorization: `Bearer ${authState.jwt}`
+				}
+			}
+		});
+	}
+	type DidAuthErrorInput = {
+		error: CombinedError;
+		authState: AuthState | null;
+	};
+
+	function didAuthError({ error }: DidAuthErrorInput) {
+		return error.graphQLErrors.some((e) => e.extensions?.code === 'UNAUTHORIZED');
+	}
+
+	type WillAuthErrorInput = {
+		operation: Operation<any, any>;
+		authState: AuthState | null;
+	};
+
+	function willAuthError({ operation, authState }: WillAuthErrorInput) {
+		if (!authState) {
+			return !(
+				operation.kind === 'mutation' &&
+				operation.query.definitions.some((definition) => {
+					return (
+						definition.kind === 'OperationDefinition' &&
+						definition.selectionSet.selections.some((node) => {
+							return (
+								node.kind === 'Field' &&
+								(node.name.value === 'login' || node.name.value === 'register')
+							);
+						})
+					);
+				})
+			);
+		} else {
+			const decoded = jwtDecode<{ exp: number }>(getToken() as string);
+			const isExpiring = decoded.exp * 1000 - new Date().getTime() <= 5000;
+			return operation.kind === 'query' && isExpiring;
+		}
+	}
+	const client = createClient({
+		url: 'http://localhost:3000/graphql',
+		exchanges: [
+			dedupExchange,
+			cacheExchange,
+			authExchange<AuthState>({
+				getAuth,
+				addAuthToOperation,
+				didAuthError,
+				willAuthError
+			}),
+			fetchExchange
+		]
+	});
+	setContextClient(client);
 </script>
 
 <main>

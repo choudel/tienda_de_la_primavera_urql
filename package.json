@@ -43,6 +43,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@urql/exchange-auth": "^2.1.4",
     "@urql/svelte": "^4.0.1"
   }
 }
