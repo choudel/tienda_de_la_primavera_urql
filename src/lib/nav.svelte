@@ -158,7 +158,7 @@
 </nav>
 
 <style lang="scss">
-	$break: 815px;
+	$break: 768px;
 	$height: 4vh;
 	$shadow: #ddffbb20;
 	@font-face {
@@ -429,6 +429,11 @@
 	}
 	#page_1__content {
 		grid-area: pag1;
+		background-color: var(--color3);
+		border-radius: 32px;
+		@media only screen and (max-width: $break) {
+			border-radius: 0;
+		}
 	}
 	.sub_page_1 {
 		background-color: var(--color3);
@@ -461,6 +466,11 @@
 	}
 	#page_2__content {
 		grid-area: pag2;
+		background-color: var(--color3);
+		border-radius: 32px;
+		@media only screen and (max-width: $break) {
+			border-radius: 0;
+		}
 	}
 	.sub_page_2 {
 		background-color: var(--color3);
@@ -492,6 +502,11 @@
 	}
 	#page_3__content {
 		grid-area: pag3;
+		background-color: var(--color3);
+		border-radius: 32px;
+		@media only screen and (max-width: $break) {
+			border-radius: 0;
+		}
 	}
 	.sub_page_3 {
 		background-color: var(--color3);
@@ -527,6 +542,11 @@
 	}
 	#page_4__content {
 		grid-area: pag4;
+		background-color: var(--color3);
+		border-radius: 32px;
+		@media only screen and (max-width: $break) {
+			border-radius: 0;
+		}
 	}
 	.sub_page_4 {
 		background-color: var(--color3);

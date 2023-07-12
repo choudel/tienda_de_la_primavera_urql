@@ -3,6 +3,9 @@
 </div>
 
 <style lang="scss">
+	$sm: 576px;
+	$md: 768px;
+	$lg: 992px;
 	@font-face {
 		font-family: 'Permanent Marker';
 		src: url('/fonts/PermanentMarker-Regular.ttf');
@@ -17,12 +20,20 @@
 		font-size: 25px;
 		line-height: 35px;
 		color: #004242;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			height: auto;
 			padding-top: 32px;
 			padding-bottom: 32px;
 			font-size: 35px;
 			line-height: 51px;
+		}
+		@media only screen and (min-width: $md) {
+			font-size: 16px;
+			line-height: 41px;
+		}
+		@media only screen and (min-width: $lg) {
+			font-size: 16px;
+			line-height: 41px;
 		}
 	}
 </style>

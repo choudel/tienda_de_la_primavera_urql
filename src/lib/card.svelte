@@ -69,7 +69,7 @@
 		margin-bottom: 8px;
 		padding: 16px;
 		gap: 10px;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			grid-template-columns: 100px 40vw;
 			grid-template-rows: auto;
 			width: calc(100vw - 78px);
@@ -83,7 +83,7 @@
 		border-radius: 32px 32px 0 0;
 		justify-content: center;
 		align-items: center;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			border-radius: 32px 0 0 32px;
 			min-height: auto;
 		}
@@ -93,7 +93,7 @@
 		height: 12vmax;
 		border-radius: 32px;
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			height: 100px;
 			width: 100px;
 			border-radius: 32px 0 0 32px;
@@ -106,7 +106,7 @@
 		padding: 8px;
 		justify-content: center;
 		align-items: center;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			grid-template-columns: calc(100vw - 208px);
 			align-items: center;
 			justify-content: left;
@@ -118,7 +118,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		text-align: center;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			text-align: left;
 		}
 	}
@@ -129,7 +129,7 @@
 		line-height: 15px;
 		color: #000000;
 		text-align: center;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			text-align: left;
 		}
 	}
@@ -139,7 +139,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		text-align: center;
-		@media only screen and (max-width: 815px) {
+		@media only screen and (max-width: 768px) {
 			text-align: right;
 		}
 	}

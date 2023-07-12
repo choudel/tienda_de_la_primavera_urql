@@ -8,7 +8,7 @@
 
 <style lang="scss">
 	$shadow: #c7e9b0;
-	$break: 815px;
+	$break: 768px;
 	.icon {
 		display: grid;
 		background: #b3c99c;
