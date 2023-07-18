@@ -146,10 +146,20 @@
 			padding-bottom: 16px;
 		}
 		@media only screen and (min-width: $md) {
-			background: #57c5c4;
+			background: rgba(255, 255, 255, 0.45);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			backdrop-filter: blur(9px);
+			-webkit-backdrop-filter: blur(9px);
+			border-radius: 32px;
+			border: 1px solid rgba(255, 255, 255, 0.18);
 		}
 		@media only screen and (min-width: $lg) {
-			background: #bffcfa;
+			background: rgba(255, 255, 255, 0.45);
+			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+			backdrop-filter: blur(9px);
+			-webkit-backdrop-filter: blur(9px);
+			border-radius: 32px;
+			border: 1px solid rgba(255, 255, 255, 0.18);
 		}
 	}
 	.right {
@@ -202,16 +212,18 @@
 		display: grid;
 		width: auto;
 		height: calc(35vmax - 42px);
-		background: #b3c99c;
-		border: 2px solid #ddffbb;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 32px;
 		margin-top: 8px;
 		margin-bottom: 8px;
 		padding: 16px;
 		align-items: center;
 		justify-items: center;
 		color: #004242;
+		background: rgba(255, 255, 255, 0.45);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(9px);
+		-webkit-backdrop-filter: blur(9px);
+		border-radius: 32px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
 		@media only screen and (max-width: 576px) {
 			display: none;
 		}

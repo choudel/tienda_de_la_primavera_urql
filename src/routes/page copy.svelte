@@ -282,10 +282,7 @@
 		display: grid;
 		width: auto;
 		height: calc(35vmax - 42px);
-		background: #b3c99c;
-		border: 2px solid #ddffbb;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 32px;
+
 		margin-top: 8px;
 		margin-bottom: 8px;
 		padding: 16px;

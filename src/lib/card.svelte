@@ -59,12 +59,14 @@
 		display: grid;
 		width: auto;
 		max-height: calc(35vmax - 42px);
-		background: #b3c99c;
 		grid-template-columns: auto;
 		grid-template-rows: 15vmax auto;
-		border: 2px solid #ddffbb;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		background: rgba(164, 188, 146, 0.4);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
 		border-radius: 32px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
 		margin-top: 8px;
 		margin-bottom: 8px;
 		padding: 16px;
