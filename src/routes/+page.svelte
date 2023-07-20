@@ -1,18 +1,22 @@
 <script async script lang="ts">
-	import Nav from '../lib/nav.svelte';
+	import { theme } from '../stores';
 	import Title from '../lib/title.svelte';
 	import Search from '../lib/search.svelte';
 	import Card from '../lib/card.svelte';
 	import Footer from '../lib/footer.svelte';
+	import Links from '$lib/nav/links.svelte';
+	import '@github/relative-time-element';
+	export let data;
 </script>
 
-<main>
+<main class:dark={$theme}>
 	<header>
-		<Nav />
+		<Links {data} />
 	</header>
 	<section class="hero">
 		<div class="left">
 			<Title />
+			<relative-time datetime="2023-07-01T16:30:00-08:00"> july 1, 2023 4:30pm </relative-time>
 			<Search />
 		</div>
 		<div class="right">
@@ -41,10 +45,22 @@
 </main>
 
 <style lang="scss">
-	$break: 576px;
+	$break: 768px;
 	$sm: 576px;
 	$md: 768px;
 	$lg: 992px;
+	$height: 4vh;
+	$button-height: 56px;
+	$shadow: #ddffbb20;
+	$text-color: #004242;
+	$border-color: #ddffbb;
+	$secondary-border-color: #e0947d;
+	$g-border-radius: 32px;
+	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+	$color-ism: #26a891;
+	$color-sm: #53bf8d;
+	$color-md: #85d583;
+	$color-lg: #bce878;
 	@font-face {
 		font-family: 'Montserrat Alternates Regular';
 		src: url('/fonts/MontserratAlternates-Regular.ttf');
@@ -57,27 +73,42 @@
 	}
 	main {
 		display: grid;
-
 		z-index: 0;
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			grid-template-rows: 10vmax auto auto 20vmax;
 			padding: 16px;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #26a891;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%),
+				$color-ism;
 		}
 		@media only screen and (min-width: $sm) {
 			grid-template-rows: 10vmax auto auto 20vmax;
 			padding: 16px;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #53bf8d;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), $color-sm;
 		}
 		@media only screen and (min-width: $md) {
 			grid-template-rows: auto 35vmax 35vmax 20vmax;
 			padding: 0 16px;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #85d583;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), $color-md;
 		}
 		@media only screen and (min-width: $lg) {
 			grid-template-rows: auto 35vmax 35vmax 20vmax;
 			padding: 0 100px;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #bce878;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), $color-lg;
+		}
+	}
+	.dark {
+		color: aliceblue;
+		@media only screen and (max-width: $sm) {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #000e14;
+		}
+		@media only screen and (min-width: $sm) {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #00141f;
+		}
+		@media only screen and (min-width: $md) {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #001b29;
+		}
+		@media only screen and (min-width: $lg) {
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 71.35%), #00293d;
 		}
 	}
 	header {
@@ -86,7 +117,7 @@
 	}
 	section {
 		z-index: 1;
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			padding-left: 16px;
 			padding-right: 16px;
 		}
@@ -107,7 +138,7 @@
 		display: grid;
 
 		gap: 8px;
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			grid-template-columns: auto;
 			grid-template-rows: auto auto;
 		}
@@ -129,9 +160,9 @@
 		height: 35vmax;
 		justify-items: center;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			background: none;
 			box-shadow: none;
 			height: auto;
@@ -150,7 +181,7 @@
 			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 			backdrop-filter: blur(9px);
 			-webkit-backdrop-filter: blur(9px);
-			border-radius: 32px;
+			border-radius: $g-border-radius;
 			border: 1px solid rgba(255, 255, 255, 0.18);
 		}
 		@media only screen and (min-width: $lg) {
@@ -158,16 +189,16 @@
 			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 			backdrop-filter: blur(9px);
 			-webkit-backdrop-filter: blur(9px);
-			border-radius: 32px;
+			border-radius: $g-border-radius;
 			border: 1px solid rgba(255, 255, 255, 0.18);
 		}
 	}
 	.right {
 		height: 35vmax;
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			display: none;
 		}
 		@media only screen and (min-width: $sm) {
@@ -185,13 +216,13 @@
 		width: 40vmax;
 		height: 35vmax;
 		object-fit: cover;
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 	}
 	.container {
 		display: grid;
 		z-index: 1;
 		gap: 8px;
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			grid-template-columns: auto;
 			grid-template-rows: auto auto auto auto;
 			justify-content: center;
@@ -209,7 +240,6 @@
 		}
 	}
 	.card {
-		display: grid;
 		width: auto;
 		height: calc(35vmax - 42px);
 		margin-top: 8px;
@@ -222,9 +252,9 @@
 		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 		backdrop-filter: blur(9px);
 		-webkit-backdrop-filter: blur(9px);
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 		border: 1px solid rgba(255, 255, 255, 0.18);
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			display: none;
 		}
 		@media only screen and (min-width: $sm) {
@@ -248,7 +278,7 @@
 		text-align: center;
 		align-items: center;
 		justify-items: center;
-		@media only screen and (max-width: 576px) {
+		@media only screen and (max-width: $sm) {
 			height: auto;
 			width: auto;
 			padding: 0;
@@ -267,7 +297,7 @@
 	}
 	.icon {
 		display: none;
-		@media only screen and (max-width: $break) {
+		@media only screen and (max-width: $sm) {
 			display: grid;
 			justify-content: center;
 			align-items: center;
@@ -296,7 +326,7 @@
 	}
 	.outer {
 		display: none;
-		@media only screen and (max-width: $break) {
+		@media only screen and (max-width: $sm) {
 			display: grid;
 			justify-content: center;
 			align-items: center;

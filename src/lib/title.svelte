@@ -1,4 +1,8 @@
-<div class="title">
+<script>
+	import { theme } from '../stores';
+</script>
+
+<div class="title" class:dark={$theme}>
 	<h1>Tienda de la primavera</h1>
 </div>
 
@@ -6,6 +10,7 @@
 	$sm: 576px;
 	$md: 768px;
 	$lg: 992px;
+	$text-color: #004242;
 	@font-face {
 		font-family: 'Permanent Marker';
 		src: url('/fonts/PermanentMarker-Regular.ttf');
@@ -19,8 +24,15 @@
 		font-weight: 400;
 		font-size: 25px;
 		line-height: 35px;
-		color: #004242;
-		@media only screen and (max-width: 768px) {
+		color: $text-color;
+		@media only screen and (max-width: $sm) {
+			height: auto;
+			padding-top: 32px;
+			padding-bottom: 32px;
+			font-size: 35px;
+			line-height: 51px;
+		}
+		@media only screen and (min-width: $sm) {
 			height: auto;
 			padding-top: 32px;
 			padding-bottom: 32px;
@@ -35,5 +47,8 @@
 			font-size: 16px;
 			line-height: 41px;
 		}
+	}
+	.dark {
+		color: aliceblue;
 	}
 </style>

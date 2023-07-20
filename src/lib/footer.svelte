@@ -1,10 +1,16 @@
-<div class="footer">
+<script>
+	import { theme } from '../stores';
+</script>
+
+<div class="footer" class:dark={$theme}>
 	<h3>DubrosRendann<br />a.k.a<br />Choudel</h3>
 </div>
 
 <style lang="scss">
+	$sm: 576px;
+	$md: 768px;
+	$lg: 992px;
 	* {
-		color: #004242;
 		font-family: 'Montserrat Alternates Regular';
 		font-style: normal;
 		font-weight: 700;
@@ -13,6 +19,7 @@
 	}
 	.footer {
 		height: calc(20vmax - 8px);
+		color: #004242;
 		display: grid;
 		background-color: #b3c99c;
 		justify-content: center;
@@ -23,5 +30,20 @@
 		border-color: #ddffbb;
 		border-radius: 32px 32px 0px 0px;
 		text-align: center;
+	}
+	.dark {
+		color: aliceblue;
+		@media only screen and (max-width: $sm) {
+			background-color: #00607a;
+		}
+		@media only screen and (min-width: $sm) {
+			background-color: #005066;
+		}
+		@media only screen and (min-width: $md) {
+			background-color: #004052;
+		}
+		@media only screen and (min-width: $lg) {
+			background-color: #00303d;
+		}
 	}
 </style>

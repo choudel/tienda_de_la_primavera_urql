@@ -1,34 +1,46 @@
 <script>
 	import FirstAcc from './first-acc.svelte';
+	import DarkButton from '$lib/dark-button.svelte';
+	import { theme } from '../../stores';
+	export let toggle = false;
 </script>
 
 <FirstAcc>
 	<div class="second_accordion">
-		<a href="/" class="login">Login</a>
-		<a href="/" class="logo"><div class="icon">P</div></a>
-		<a href="/" class="home">home</a>
+		<a href="/" class="login" class:dark={$theme} class:light={!$theme}>Login</a>
+		<a href="/" class="logo" class:dark={$theme} class:light={!$theme}><div class="icon">P</div></a>
+		<a href="/" class="home" class:dark={$theme} class:light={!$theme}>home</a>
 		<slot />
-		<a href="/" class="blog">Page_5</a>
+		<div class="blog" class:dark={$theme} class:light={!$theme}><DarkButton /></div>
 	</div>
+	{#if toggle}
+		<slot name="close" />
+	{/if}
 </FirstAcc>
 
 <style lang="scss">
+	$break: 768px;
 	$sm: 576px;
 	$md: 768px;
 	$lg: 992px;
 	$height: 4vh;
+	$button-height: 56px;
 	$shadow: #ddffbb20;
+	$text-color: #004242;
+	$border-color: #ddffbb;
+	$secondary-border-color: #e0947d;
+	$g-border-radius: 32px;
+	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 	a {
-		color: #004242;
+		color: $text-color;
 		text-align: center;
 		text-decoration: none;
 		padding: 10px 10px;
 	}
 	.second_accordion {
 		align-items: center;
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 		display: grid;
-
 		@media only screen and (max-width: $sm) {
 			grid-template-areas:
 				'logo'
@@ -82,15 +94,38 @@
 			grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto 1fr;
 		}
 	}
+	.dark {
+		color: aliceblue;
+		@media only screen and (max-width: $sm) {
+		}
+		@media only screen and (min-width: $sm) {
+		}
+		@media only screen and (min-width: $md) {
+			background-color: #005066;
+		}
+		@media only screen and (min-width: $lg) {
+			background-color: #005066;
+		}
+	}
+	.light {
+		@media only screen and (max-width: $sm) {
+		}
+		@media only screen and (min-width: $sm) {
+		}
+		@media only screen and (min-width: $md) {
+			background-color: var(--color2);
+		}
+		@media only screen and (min-width: $lg) {
+			background-color: var(--color2);
+		}
+	}
 	.logo {
 		grid-area: logo;
 		min-height: $height;
 		align-items: center;
 		justify-items: center;
-
 		@media only screen and (max-width: $sm) {
 			display: none;
-			background-color: var(--color2);
 			&:hover {
 				background-color: $shadow;
 				border-radius: 32px 0 0 32px;
@@ -98,7 +133,6 @@
 		}
 		@media only screen and (min-width: $sm) {
 			display: none;
-			background-color: var(--color2);
 			&:hover {
 				background-color: $shadow;
 				border-radius: 32px 0 0 32px;
@@ -128,27 +162,25 @@
 		justify-items: center;
 		grid-area: home;
 		@media only screen and (max-width: $sm) {
-			background-color: var(--color2);
 			&:hover {
 				background-color: $shadow;
 			}
 		}
 		@media only screen and (min-width: $sm) {
-			background-color: var(--color2);
 			&:hover {
 				background-color: $shadow;
 			}
 		}
 		@media only screen and (min-width: $md) {
 			display: grid;
-			height: 56px;
+			height: $button-height;
 			&:hover {
 				background-color: $shadow;
 			}
 		}
 		@media only screen and (min-width: $lg) {
 			display: grid;
-			height: 56px;
+			height: $button-height;
 			&:hover {
 				background-color: $shadow;
 			}
@@ -163,23 +195,21 @@
 		border-radius: 0 32px 32px 0;
 		&:hover {
 			background-color: $shadow;
-			min-height: 56px;
+			min-height: $button-height;
 		}
 		@media only screen and (max-width: $sm) {
-			background-color: var(--color2);
 			border-radius: 0;
 		}
 		@media only screen and (min-width: $sm) {
-			background-color: var(--color2);
 			border-radius: 0;
 		}
 		@media only screen and (min-width: $md) {
 			border-radius: 0 32px 32px 0;
-			height: 56px;
+			height: $button-height;
 		}
 		@media only screen and (min-width: $lg) {
 			border-radius: 0 32px 32px 0;
-			height: 56px;
+			height: $button-height;
 		}
 	}
 	.blog {
@@ -188,26 +218,24 @@
 		min-height: $height;
 		align-items: center;
 		justify-items: center;
-
+		padding: 10px 10px;
 		@media only screen and (max-width: $sm) {
-			background-color: var(--color2);
 			border-radius: 0 0 32px 32px;
 		}
 		@media only screen and (min-width: $sm) {
-			background-color: var(--color2);
 			border-radius: 0 0 32px 32px;
 		}
 		@media only screen and (min-width: $md) {
 			border-radius: 0;
-			height: 56px;
+			height: $button-height;
 		}
 		@media only screen and (min-width: $lg) {
 			border-radius: 0;
-			height: 56px;
+			height: $button-height;
 		}
 		&:hover {
 			background-color: $shadow;
-			min-height: 56px;
+			min-height: $button-height;
 		}
 	}
 	.icon {
@@ -223,7 +251,7 @@
 		line-height: 39px;
 		width: 50px;
 		height: 50px;
-		border: 3px solid #ddffbb;
+		border: 3px solid $border-color;
 		border-radius: 50px;
 	}
 </style>

@@ -159,8 +159,17 @@
 
 <style lang="scss">
 	$break: 768px;
+	$sm: 576px;
+	$md: 768px;
+	$lg: 992px;
 	$height: 4vh;
+	$button-height: 56px;
 	$shadow: #ddffbb20;
+	$text-color: #004242;
+	$border-color: #ddffbb;
+	$secondary-border-color: #e0947d;
+	$g-border-radius: 32px;
+	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 	@font-face {
 		font-family: 'Montserrat Alternates Regular';
 		src: url('/fonts/MontserratAlternates-Regular.ttf');

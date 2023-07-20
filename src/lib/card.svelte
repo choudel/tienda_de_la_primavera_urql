@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { theme } from '../stores';
 	import { queryStore, gql, getContextClient } from '@urql/svelte';
 
 	const client = getContextClient();
@@ -34,9 +35,9 @@
 				<img src={node.image} alt="bag" />
 			</div>
 			<div class="label">
-				<div class="item-name">{node.item}</div>
-				<div class="sell-text">{node.sellText}</div>
-				<div class="price">{node.price} D.A</div>
+				<div class="item-name" class:dark={$theme}>{node.item}</div>
+				<div class="sell-text" class:dark={$theme} class:light={!$theme}>{node.sellText}</div>
+				<div class="price" class:dark={$theme}>{node.price} D.A</div>
 			</div>
 		</div>
 	{/each}
@@ -45,6 +46,8 @@
 <slot />
 
 <style lang="scss">
+	$break: 768px;
+	$g-border-radius: 32px;
 	@font-face {
 		font-family: 'Montserrat Alternates Regular';
 		src: url('/fonts/MontserratAlternates-Regular.ttf');
@@ -65,13 +68,13 @@
 		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 		backdrop-filter: blur(8px);
 		-webkit-backdrop-filter: blur(8px);
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 		border: 1px solid rgba(255, 255, 255, 0.18);
 		margin-top: 8px;
 		margin-bottom: 8px;
 		padding: 16px;
 		gap: 10px;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			grid-template-columns: 100px 40vw;
 			grid-template-rows: auto;
 			width: calc(100vw - 78px);
@@ -85,7 +88,7 @@
 		border-radius: 32px 32px 0 0;
 		justify-content: center;
 		align-items: center;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			border-radius: 32px 0 0 32px;
 			min-height: auto;
 		}
@@ -93,13 +96,16 @@
 	img {
 		width: 12vmax;
 		height: 12vmax;
-		border-radius: 32px;
+		border-radius: $g-border-radius;
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			height: 100px;
 			width: 100px;
 			border-radius: 32px 0 0 32px;
 		}
+	}
+	.dark {
+		color: aliceblue;
 	}
 	.label {
 		color: #004242;
@@ -108,7 +114,7 @@
 		padding: 8px;
 		justify-content: center;
 		align-items: center;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			grid-template-columns: calc(100vw - 208px);
 			align-items: center;
 			justify-content: left;
@@ -120,7 +126,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		text-align: center;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			text-align: left;
 		}
 	}
@@ -129,11 +135,13 @@
 		font-weight: 400;
 		font-size: 12px;
 		line-height: 15px;
-		color: #000000;
 		text-align: center;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			text-align: left;
 		}
+	}
+	.light {
+		color: #000000;
 	}
 	.price {
 		font-family: 'Montserrat Alternates Regular';
@@ -141,7 +149,7 @@
 		font-size: 14px;
 		line-height: 17px;
 		text-align: center;
-		@media only screen and (max-width: 768px) {
+		@media only screen and (max-width: $break) {
 			text-align: right;
 		}
 	}
