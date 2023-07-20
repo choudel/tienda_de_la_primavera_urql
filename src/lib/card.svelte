@@ -22,10 +22,22 @@
 		client,
 		query
 	});
+	let loading = ['', '', ''];
 </script>
 
 {#if $todos.fetching}
-	<p>Loading...</p>
+	{#each loading as node}
+		<div class="card">
+			<div class="item-pic">
+				<div class="fake-image" />
+			</div>
+			<div class="label">
+				<div class="fake-name" class:dark={$theme} />
+				<div class="fake-text" class:dark={$theme} class:light={!$theme} />
+				<div class="fake-price" class:dark={$theme} />
+			</div>
+		</div>
+	{/each}
 {:else if $todos.error}
 	<p>Oh no... {$todos.error.message}</p>
 {:else}
@@ -152,5 +164,35 @@
 		@media only screen and (max-width: $break) {
 			text-align: right;
 		}
+	}
+	.fake-image {
+		background-color: #00424225;
+		width: 12vmax;
+		height: 12vmax;
+		border-radius: $g-border-radius;
+		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+		@media only screen and (max-width: $break) {
+			height: 100px;
+			width: 100px;
+			border-radius: 32px 0 0 32px;
+		}
+	}
+	.fake-name {
+		height: 15px;
+		width: 80px;
+		background-color: #00424225;
+		border-radius: $g-border-radius;
+	}
+	.fake-text {
+		height: 15px;
+		width: 100px;
+		background-color: #00424225;
+		border-radius: $g-border-radius;
+	}
+	.fake-price {
+		height: 15px;
+		width: 60px;
+		background-color: #00424225;
+		border-radius: $g-border-radius;
 	}
 </style>
