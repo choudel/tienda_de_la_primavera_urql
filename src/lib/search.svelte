@@ -17,7 +17,7 @@
 	$shadow: #c7e9b0;
 	$break: 768px;
 	$text-color: #004242;
-	$border-color: #ddffbb;
+	$border-color: #ffffff50;
 	$g-border-radius: 32px;
 	.icon {
 		display: grid;
@@ -50,7 +50,7 @@
 		width: 30vmax;
 		height: 13vmax;
 		padding: 8px;
-		background: #b3c99c;
+		background: #ffffff20;
 		border: 2px solid $border-color;
 		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		border-radius: $g-border-radius;
@@ -79,20 +79,20 @@
 		}
 	}
 	.text {
-		background: #ddffbb;
+		background: #e1d7c6;
 		display: grid;
 		position: absolute;
 		height: 60px;
 		padding: 0;
 		margin: 0;
-		border: 2px solid #ddffbb;
+		border: 2px solid #ffffff50;
 		border-radius: 50px;
 		@media only screen and (max-width: $break) {
 			width: 80vw;
 		}
 	}
 	.drk-text {
-		background: #ddffbb50;
+		background: #e1d7c650;
 	}
 	.submit {
 		height: 66px;

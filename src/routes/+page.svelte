@@ -4,14 +4,14 @@
 	import Search from '../lib/search.svelte';
 	import Card from '../lib/card.svelte';
 	import Footer from '../lib/footer.svelte';
-	import Links from '$lib/nav/links.svelte';
+	import { Nav } from '$lib/nav';
 	import '@github/relative-time-element';
 	export let data;
 </script>
 
 <main class:dark={$theme}>
 	<header>
-		<Links {data} />
+		<Nav {data} />
 	</header>
 	<section class="hero">
 		<div class="left">
@@ -57,10 +57,10 @@
 	$secondary-border-color: #e0947d;
 	$g-border-radius: 32px;
 	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-	$color-ism: #26a891;
-	$color-sm: #53bf8d;
-	$color-md: #85d583;
-	$color-lg: #bce878;
+	$color-ism: #f8f4ea;
+	$color-sm: #ece8dd;
+	$color-md: #e1d7c6;
+	$color-lg: #e1d7c6;
 	@font-face {
 		font-family: 'Montserrat Alternates Regular';
 		src: url('/fonts/MontserratAlternates-Regular.ttf');
@@ -248,12 +248,11 @@
 		align-items: center;
 		justify-items: center;
 		color: #004242;
-		background: rgba(255, 255, 255, 0.45);
-		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-		backdrop-filter: blur(9px);
-		-webkit-backdrop-filter: blur(9px);
-		border-radius: $g-border-radius;
-		border: 1px solid rgba(255, 255, 255, 0.18);
+		backdrop-filter: blur(3px);
+		background-color: rgba(255, 255, 255, 0.9);
+		border-radius: 32px;
+		box-shadow: 0px 35px 68px 0px rgba(225, 215, 198, 0.5),
+			inset 0px -2px 16px 0px rgba(225, 215, 198, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 		@media only screen and (max-width: $sm) {
 			display: none;
 		}

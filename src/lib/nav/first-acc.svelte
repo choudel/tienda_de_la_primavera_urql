@@ -6,8 +6,8 @@
 	class="accordion"
 	id="start"
 	style="
-  --color1:#B3C99C;
-  --color2:#C7E9B0;
+  --color1:#579BB1;
+  --color2:#579BB1;
   --color3:#DDFFBB;
   --color4:#A4BC92"
 >
@@ -41,7 +41,7 @@
 	$button-height: 56px;
 	$shadow: #ddffbb20;
 	$text-color: #004242;
-	$border-color: #ddffbb;
+	$border-color: #ffffff50;
 	$secondary-border-color: #e0947d;
 	$g-border-radius: 32px;
 	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;

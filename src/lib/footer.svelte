@@ -21,13 +21,13 @@
 		height: calc(20vmax - 8px);
 		color: #004242;
 		display: grid;
-		background-color: #b3c99c;
+		background-color: #e1d7c6;
 		justify-content: center;
 		align-items: center;
 		padding: 8px;
 		border-width: 2px 2px 0px 2px;
 		border-style: solid;
-		border-color: #ddffbb;
+		border-color: #ffffff50;
 		border-radius: 32px 32px 0px 0px;
 		text-align: center;
 	}

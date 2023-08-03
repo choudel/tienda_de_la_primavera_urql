@@ -42,7 +42,7 @@
 	<p>Oh no... {$todos.error.message}</p>
 {:else}
 	{#each $todos.data.query.items.nodes as node}
-		<div class="card">
+		<div class="card" class:bg-dark={$theme} class:bg-light={!$theme}>
 			<div class="item-pic">
 				<img src={node.image} alt="bag" />
 			</div>
@@ -76,12 +76,6 @@
 		max-height: calc(35vmax - 42px);
 		grid-template-columns: auto;
 		grid-template-rows: 15vmax auto;
-		background: rgba(164, 188, 146, 0.4);
-		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-		backdrop-filter: blur(8px);
-		-webkit-backdrop-filter: blur(8px);
-		border-radius: $g-border-radius;
-		border: 1px solid rgba(255, 255, 255, 0.18);
 		margin-top: 8px;
 		margin-bottom: 8px;
 		padding: 16px;
@@ -119,6 +113,24 @@
 	.dark {
 		color: aliceblue;
 	}
+	.light {
+		color: #000000;
+	}
+	.bg-dark {
+		background: rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		border-radius: 32px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+	}
+	.bg-light {
+		backdrop-filter: blur(3px);
+		background-color: rgba(255, 255, 255, 0.9);
+		border-radius: 32px;
+		box-shadow: 0px 35px 68px 0px rgba(225, 215, 198, 0.5),
+			inset 0px -2px 16px 0px rgba(225, 215, 198, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+	}
 	.label {
 		color: #004242;
 		display: grid;
@@ -152,9 +164,7 @@
 			text-align: left;
 		}
 	}
-	.light {
-		color: #000000;
-	}
+
 	.price {
 		font-family: 'Montserrat Alternates Regular';
 		font-weight: 400;
