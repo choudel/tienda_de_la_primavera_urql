@@ -46,6 +46,7 @@
     "@github/relative-time-element": "^4.3.0",
     "@urql/exchange-auth": "^2.1.5",
     "@urql/svelte": "^4.0.1",
-    "dark-mode-toggle": "^0.14.6"
+    "dark-mode-toggle": "^0.14.6",
+    "graphql-request": "^6.1.0"
   }
 }
