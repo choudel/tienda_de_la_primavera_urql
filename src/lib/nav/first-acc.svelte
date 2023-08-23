@@ -8,8 +8,8 @@
 	style="
   --color1:#579BB1;
   --color2:#579BB1;
-  --color3:#DDFFBB;
-  --color4:#A4BC92"
+  --color3:#B4A7B7;
+  --color4:#A688AD"
 >
 	<div class="first_accordion" class:fa-dark={$theme}>
 		<input

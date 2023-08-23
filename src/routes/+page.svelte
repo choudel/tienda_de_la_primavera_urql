@@ -5,7 +5,7 @@
 	import Card from '../lib/card.svelte';
 	import Footer from '../lib/footer.svelte';
 	import { Nav } from '$lib/nav';
-	import '@github/relative-time-element';
+
 	export let data;
 </script>
 
@@ -16,7 +16,6 @@
 	<section class="hero">
 		<div class="left">
 			<Title />
-			<relative-time datetime="2023-07-01T16:30:00-08:00"> july 1, 2023 4:30pm </relative-time>
 			<Search />
 		</div>
 		<div class="right">
@@ -30,7 +29,7 @@
 			</div>
 		</div>
 		<Card />
-		<div class="card">
+		<div class="card" class:bg-dark={$theme} class:bg-light={!$theme}>
 			<h1>Click to view all products</h1>
 		</div>
 		<div class="outer">
@@ -147,11 +146,11 @@
 			grid-template-rows: auto auto;
 		}
 		@media only screen and (min-width: $md) {
-			grid-template-columns: auto 40vmax;
+			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 35vmax;
 		}
 		@media only screen and (min-width: $lg) {
-			grid-template-columns: auto 40vmax;
+			grid-template-columns: 1fr 1fr;
 			grid-template-rows: 35vmax;
 		}
 	}
@@ -159,7 +158,6 @@
 		display: grid;
 		height: 35vmax;
 		justify-items: center;
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		border-radius: $g-border-radius;
 
 		@media only screen and (max-width: $sm) {
@@ -178,19 +176,19 @@
 		}
 		@media only screen and (min-width: $md) {
 			background: rgba(255, 255, 255, 0.45);
-			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 			backdrop-filter: blur(9px);
 			-webkit-backdrop-filter: blur(9px);
 			border-radius: $g-border-radius;
 			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		}
 		@media only screen and (min-width: $lg) {
 			background: rgba(255, 255, 255, 0.45);
-			box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 			backdrop-filter: blur(9px);
 			-webkit-backdrop-filter: blur(9px);
 			border-radius: $g-border-radius;
 			border: 1px solid rgba(255, 255, 255, 0.18);
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 		}
 	}
 	.right {
@@ -213,10 +211,13 @@
 	}
 	.right > img {
 		display: grid;
-		width: 40vmax;
+		width: calc((100vw - (32px + 148px + 24px)) / 2);
 		height: 35vmax;
 		object-fit: cover;
 		border-radius: $g-border-radius;
+		@media only screen and (min-width: $lg) {
+			width: calc((100vw - (200px + 148px + 24px)) / 2);
+		}
 	}
 	.container {
 		display: grid;
@@ -248,11 +249,7 @@
 		align-items: center;
 		justify-items: center;
 		color: #004242;
-		backdrop-filter: blur(3px);
-		background-color: rgba(255, 255, 255, 0.9);
-		border-radius: 32px;
-		box-shadow: 0px 35px 68px 0px rgba(225, 215, 198, 0.5),
-			inset 0px -2px 16px 0px rgba(225, 215, 198, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
+
 		@media only screen and (max-width: $sm) {
 			display: none;
 		}
@@ -265,6 +262,21 @@
 		@media only screen and (min-width: $lg) {
 			display: grid;
 		}
+	}
+	.bg-dark {
+		background: rgba(255, 255, 255, 0.25);
+		box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		border-radius: 32px;
+		border: 1px solid rgba(255, 255, 255, 0.18);
+	}
+	.bg-light {
+		backdrop-filter: blur(3px);
+		background-color: rgba(255, 255, 255, 0.9);
+		border-radius: 32px;
+		box-shadow: 0px 35px 68px 0px rgba(225, 215, 198, 0.5),
+			inset 0px -2px 16px 0px rgba(225, 215, 198, 0.6), inset 0px 11px 28px 0px rgb(255, 255, 255);
 	}
 	.card > h1 {
 		display: grid;

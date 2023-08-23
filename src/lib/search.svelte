@@ -31,8 +31,8 @@
 		font-weight: 700;
 		font-size: 32px;
 		line-height: 39px;
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 40px;
 		border-radius: 50px;
 		&:hover {
 			background-color: $shadow;
@@ -47,7 +47,7 @@
 		display: grid;
 		grid-template-rows: calc(13vmax / 2) calc(13vmax / 2);
 		align-items: center;
-		width: 30vmax;
+		width: 25vmax;
 		height: 13vmax;
 		padding: 8px;
 		background: #ffffff20;
@@ -66,23 +66,30 @@
 		@media only screen and (max-width: $break) {
 			width: 80vw;
 		}
+		@media only screen and (min-width: $lg) {
+			margin: 10px;
+		}
 	}
 	.down {
 		display: grid;
 		height: fit-content;
 	}
 	.down > input {
-		width: calc(30vmax - 72px);
+		width: calc(25vmax - 72px);
 		padding-left: 66px;
 		@media only screen and (max-width: $break) {
 			width: calc((100vw - 78px) - 72px);
+		}
+		@media only screen and (min-width: $lg) {
+			width: calc(25vmax - 92px);
+			margin: 10px;
 		}
 	}
 	.text {
 		background: #e1d7c6;
 		display: grid;
 		position: absolute;
-		height: 60px;
+		height: 40px;
 		padding: 0;
 		margin: 0;
 		border: 2px solid #ffffff50;
@@ -98,13 +105,17 @@
 		height: 66px;
 		width: fit-content;
 		position: relative;
-		top: -1px;
-		left: 8px;
+		top: -11px;
+		left: 2px;
 		z-index: 2;
 		background: none;
 		border: none;
 		padding: 0;
 		margin: 0;
+		@media only screen and (min-width: $lg) {
+			top: -1px;
+			left: 12px;
+		}
 	}
 	.dark {
 		color: aliceblue;

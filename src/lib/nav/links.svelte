@@ -40,7 +40,7 @@
 	$shadow: #ddffbb20;
 	$text-color: #004242;
 	$border-color: #ddffbb;
-	$secondary-border-color: #e0947d;
+	$secondary-border-color: #e1d7c625;
 	$g-border-radius: 32px;
 	$shadow-style: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 	div {
@@ -69,7 +69,7 @@
 		text-align: left;
 		margin: 2px;
 		border: 2px solid;
-		background-color: #e0947d;
+		background-color: #e1d7c6;
 		border-color: $secondary-border-color;
 		border-radius: $g-border-radius;
 		@media only screen and (max-width: $sm) {
@@ -91,7 +91,7 @@
 			align-content: center;
 		}
 		&:hover {
-			background-color: #e0947d50;
+			background-color: #e1d7c650;
 		}
 	}
 	.light {
