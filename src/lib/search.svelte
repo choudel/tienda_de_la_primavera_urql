@@ -77,6 +77,7 @@
 	.down > input {
 		width: calc(25vmax - 72px);
 		padding-left: 66px;
+		margin-bottom: 10px;
 		@media only screen and (max-width: $break) {
 			width: calc((100vw - 78px) - 72px);
 		}
